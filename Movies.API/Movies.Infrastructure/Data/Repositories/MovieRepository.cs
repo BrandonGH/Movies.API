@@ -22,14 +22,14 @@ public class MovieRepository(MoviesContext context) : IMovieRepository
         // Apply search filter
         if (!string.IsNullOrWhiteSpace(titleSearchTerm))
         {
-            query = query.Where(m => m.Title.Contains(titleSearchTerm));
+            query = query.Where(m => EF.Functions.ILike(m.Title, $"%{titleSearchTerm}%"));
         }
 
         // Apply genres filter
         var genreList = genres?.ToList();
         if (genreList != null && genreList.Count != 0)
         {
-            query = query.Where(m => genreList.Any(g => m.Genre.Contains(g)));
+            query = query.Where(m => m.Genre.Intersect(genreList).Any());   
         }
 
         // Apply language filter

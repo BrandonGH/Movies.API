@@ -22,22 +22,17 @@ public class MovieController(IMovieRepository movieRepository) : ControllerBase
             filter.SortColumn,
             filter.SortDirection);
 
-        return new PagedList<MovieDto>(
-            pagedMovies.Items.Select(x => new MovieDto(
-                x.Id,
-                x.ReleaseDate,
-                x.Title,
-                x.Overview,
-                x.Popularity,
-                x.VoteCount,
-                x.VoteAverage,
-                x.OriginalLanguage,
-                x.Genre,
-                x.PosterUrl
-            )).ToList(),
-            pagedMovies.TotalCount,
-            pagedMovies.PageNumber,
-            pagedMovies.PageSize
-        );
+        return pagedMovies.Transform(x => new MovieDto(
+            x.Id,
+            x.ReleaseDate,
+            x.Title,
+            x.Overview,
+            x.Popularity,
+            x.VoteCount,
+            x.VoteAverage,
+            x.OriginalLanguage,
+            x.Genre,
+            x.PosterUrl
+        ));
     }
 }

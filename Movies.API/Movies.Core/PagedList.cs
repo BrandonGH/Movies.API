@@ -14,4 +14,10 @@ public class PagedList<T>(
     public int TotalPages => (int)Math.Ceiling(TotalCount / (double)PageSize);
     public bool HasPrevious => PageNumber > 1;
     public bool HasNext => PageNumber < TotalPages;
+
+    public PagedList<TDest> Transform<TDest>(Func<T, TDest> transform) where TDest : class
+    {
+        var transformedItems = Items.Select(transform).ToList();
+        return new PagedList<TDest>(transformedItems, TotalCount, PageNumber, PageSize);
+    }
 }
