@@ -5,6 +5,15 @@ ASP.NET Core backend for the Movies app. The API exposes movie search, filtering
 The API applies any pending database migrations automatically on startup. PostgreSQL must be available and the `DefaultConnection` connection string must be configured.
 The Client image must be built individually first, see the Readme in that solution.
 
+# Run with Client
+
+The project Docker Compose file starts PostgreSQL, waits for it to become healthy, and then starts the API and frontend. The API applies migrations automatically when it starts.
+The Client image must be built individually first, see the Readme in that solution.
+
+```bash
+docker compose up
+```
+
 ## Run the API directly
 
 ```bash
@@ -27,12 +36,3 @@ docker run --rm -p 5043:5043 \
 
 The API is available at `http://localhost:5043/` and the Scalar docs are available at `http://localhost:5043/scalar/v1`.
 Configure the API to allow CORS requests from `http://localhost:4200`.
-
-# Run with client
-
-The project Docker Compose file starts PostgreSQL, waits for it to become healthy, and then starts the API and frontend. The API applies migrations automatically when it starts.
-The Client image must be built individually first, see the Readme in that solution.
-
-```bash
-docker compose up
-```
