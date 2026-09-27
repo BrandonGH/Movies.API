@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Movies.API.Middleware;
 using Movies.Domain.Movies;
 using Movies.Infrastructure.Context;
 using Movies.Infrastructure.Data.Repositories;
@@ -26,6 +27,8 @@ public class Program
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
+        app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
+
         if (app.Environment.IsDevelopment())
         {
             app.MapOpenApi();

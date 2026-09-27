@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Movies.API.ResponseDTOs;
+using Movies.API.Requests;
+using Movies.API.Responses;
 using Movies.Core;
 using Movies.Domain.Movies;
 
@@ -9,24 +10,34 @@ namespace Movies.API.Controllers;
 [Route("[controller]")]
 public class MovieController(IMovieRepository movieRepository) : ControllerBase
 {
-    private IMovieRepository  _movieRepository = movieRepository;
-
     [HttpGet(Name = "GetMovies")]
-    public IEnumerable<MovieDto> GetMovies()
+    public async Task<PagedList<MovieDto>> GetMovies([FromQuery] MoviesFilter filter)
     {
-        var movies = _movieRepository.GetMovies();
+        var pagedMovies = await movieRepository.GetMovies(
+            filter.PageNumber,
+            filter.PageSize,
+            filter.SearchTerm,
+            filter.Genre,
+            filter.Language,
+            filter.SortColumn,
+            filter.SortDirection);
 
-        return movies.Select(x => new MovieDto(
-            x.Id,
-            x.ReleaseDate,
-            x.Title,
-            x.Overview,
-            x.Popularity,
-            x.VoteCount,
-            x.VoteAverage,
-            x.OriginalLanguage,
-            x.Genre,
-            x.PosterUrl
-        ));
+        return new PagedList<MovieDto>(
+            pagedMovies.Items.Select(x => new MovieDto(
+                x.Id,
+                x.ReleaseDate,
+                x.Title,
+                x.Overview,
+                x.Popularity,
+                x.VoteCount,
+                x.VoteAverage,
+                x.OriginalLanguage,
+                x.Genre,
+                x.PosterUrl
+            )).ToList(),
+            pagedMovies.TotalCount,
+            pagedMovies.PageNumber,
+            pagedMovies.PageSize
+        );
     }
 }

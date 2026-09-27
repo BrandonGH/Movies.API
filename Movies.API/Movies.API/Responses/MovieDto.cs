@@ -1,4 +1,4 @@
-namespace Movies.API.ResponseDTOs;
+namespace Movies.API.Responses;
 
 public record MovieDto(
     Guid Id,

@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movies.Infrastructure", "Mo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movies.Domain", "Movies.Domain\Movies.Domain.csproj", "{5BE898BE-2B1D-41D2-9A4B-4105416D1FCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movies.Core", "Movies.Core\Movies.Core.csproj", "{FCAE3D16-6462-43EE-8ECD-48F0EC98247E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movies.Core", "Movies.Core\Movies.Core.csproj", "{E8576164-22B2-41AF-ABD7-02BB0312FA47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,9 +31,9 @@ Global
 		{5BE898BE-2B1D-41D2-9A4B-4105416D1FCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BE898BE-2B1D-41D2-9A4B-4105416D1FCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BE898BE-2B1D-41D2-9A4B-4105416D1FCF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FCAE3D16-6462-43EE-8ECD-48F0EC98247E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FCAE3D16-6462-43EE-8ECD-48F0EC98247E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FCAE3D16-6462-43EE-8ECD-48F0EC98247E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FCAE3D16-6462-43EE-8ECD-48F0EC98247E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8576164-22B2-41AF-ABD7-02BB0312FA47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8576164-22B2-41AF-ABD7-02BB0312FA47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8576164-22B2-41AF-ABD7-02BB0312FA47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8576164-22B2-41AF-ABD7-02BB0312FA47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
