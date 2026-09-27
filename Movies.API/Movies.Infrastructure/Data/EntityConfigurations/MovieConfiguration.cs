@@ -35,7 +35,7 @@ public class MovieConfiguration : IEntityTypeConfiguration<Movie>
         
         var movies = 
             DataService.LoadFromCsv<Movie, MovieCsvMap>(
-                "../../../../Movies.Infrastructure/Data/SeedData",
+                "Data/SeedData",
                 "mymoviedb.csv");
 
         builder.HasData(movies);
