@@ -3,6 +3,7 @@
 ASP.NET Core backend for the Movies app. The API exposes movie search, filtering, sorting, and server-side pagination endpoints, and it uses PostgreSQL for storage. The API base URL is `http://localhost:5043`.
 
 The API applies any pending database migrations automatically on startup. PostgreSQL must be available and the `DefaultConnection` connection string must be configured.
+The Client image must be built individually first, see the Readme in that solution.
 
 ## Run the API directly
 
@@ -30,6 +31,7 @@ Configure the API to allow CORS requests from `http://localhost:4200`.
 # Run with client
 
 The project Docker Compose file starts PostgreSQL, waits for it to become healthy, and then starts the API and frontend. The API applies migrations automatically when it starts.
+The Client image must be built individually first, see the Readme in that solution.
 
 ```bash
 docker compose up
