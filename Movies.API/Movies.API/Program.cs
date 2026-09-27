@@ -9,7 +9,7 @@ namespace Movies.API;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +37,12 @@ public class Program
         builder.Services.AddOpenApi();
 
         var app = builder.Build();
+
+        await using (var scope = app.Services.CreateAsyncScope())
+        {
+            var dbContext = scope.ServiceProvider.GetRequiredService<MoviesContext>();
+            await dbContext.Database.MigrateAsync();
+        }
 
         // Configure the HTTP request pipeline.
         app.UseMiddleware<GlobalExceptionHandlerMiddleware>();

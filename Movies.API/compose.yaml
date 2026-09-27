@@ -5,6 +5,13 @@
     build:
       context: .
       dockerfile: Movies.API/Dockerfile
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=movies;Username=moviesadmin;Password=d0rR17T0JfuZ;"
+    ports:
+      - "5043:5043"
   movies.client:
     image: movies.client:dev
     container_name: movies-client
@@ -23,6 +30,11 @@
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U moviesadmin -d movies"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
 volumes:
   pgdata:
