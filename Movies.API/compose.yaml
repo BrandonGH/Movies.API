@@ -11,7 +11,7 @@
     environment:
       ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=movies;Username=moviesadmin;Password=d0rR17T0JfuZ;"
     ports:
-      - "5043:5043"
+      - "8080:8080"
   movies.client:
     image: movies.client:dev
     container_name: movies-client

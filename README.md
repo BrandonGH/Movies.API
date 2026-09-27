@@ -1,6 +1,6 @@
 # Movies.API
 
-ASP.NET Core backend for the Movies app. The API exposes movie search, filtering, sorting, and server-side pagination endpoints, and it uses PostgreSQL for storage. The API base URL is `http://localhost:5043`.
+ASP.NET Core backend for the Movies app. The API exposes movie search, filtering, sorting, and server-side pagination endpoints, and it uses PostgreSQL for storage. The API base URL is `http://localhost:8080` (HTTPS is available at `https://localhost:8081` when running with the `https` launch profile).
 
 The API applies any pending database migrations automatically on startup. PostgreSQL must be available and the `DefaultConnection` connection string must be configured.
 The Client image must be built individually first, see the Readme in that solution.
@@ -21,7 +21,7 @@ dotnet restore
 dotnet run --project Movies.API/Movies.API/Movies.API.csproj
 ```
 
-The API is available at `http://localhost:5043/` and the Scalar docs are available at `http://localhost:5043/scalar/v1`.
+The API is available at `http://localhost:8080/` and the Scalar docs are available at `http://localhost:8080/scalar/v1`. With the `https` launch profile, use `https://localhost:8081/` and `https://localhost:8081/scalar/v1`.
 Configure the API to allow CORS requests from `http://localhost:4200`.
 The Development settings provide the local PostgreSQL connection string.
 
@@ -29,10 +29,10 @@ The Development settings provide the local PostgreSQL connection string.
 
 ```bash
 docker build -t movies.api:dev -f Movies.API/Movies.API/Dockerfile .
-docker run --rm -p 5043:5043 \
+docker run --rm -p 8080:8080 \
 	-e 'ConnectionStrings__DefaultConnection=Host=host.docker.internal;Port=5432;Database=movies;Username=moviesadmin;Password=d0rR17T0JfuZ;' \
 	--name MoviesAPI movies.api:dev
 ```
 
-The API is available at `http://localhost:5043/` and the Scalar docs are available at `http://localhost:5043/scalar/v1`.
+The API is available at `http://localhost:8080/` and the Scalar docs are available at `http://localhost:8080/scalar/v1`.
 Configure the API to allow CORS requests from `http://localhost:4200`.
