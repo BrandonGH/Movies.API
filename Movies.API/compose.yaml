@@ -1,0 +1,21 @@
+﻿services:
+  movies.api:
+    image: movies.api
+    build:
+      context: .
+      dockerfile: Movies.API/Dockerfile
+  postgres:
+    image: postgres:18
+    container_name: movies-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: moviesadmin
+      POSTGRES_PASSWORD: d0rR17T0JfuZ
+      POSTGRES_DB: movies
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql
+
+volumes:
+  pgdata:
