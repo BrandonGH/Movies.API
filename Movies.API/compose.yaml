@@ -1,9 +1,16 @@
 ﻿services:
   movies.api:
     image: movies.api
+    container_name: movies-api
     build:
       context: .
       dockerfile: Movies.API/Dockerfile
+  movies.client:
+    image: movies.client:dev
+    container_name: movies-client
+    restart: unless-stopped
+    ports:
+      - "4200:4200"
   postgres:
     image: postgres:18
     container_name: movies-db
