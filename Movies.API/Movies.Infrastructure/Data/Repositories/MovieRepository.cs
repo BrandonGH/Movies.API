@@ -11,7 +11,7 @@ public class MovieRepository(MoviesContext context) : IMovieRepository
     public async Task<PagedList<Movie>> GetMovies(
         int pageNumber,
         int pageSize,
-        string? searchTerm,
+        string? titleSearchTerm,
         IEnumerable<string>? genres,
         string? language,
         string? sortColumn,
@@ -20,9 +20,9 @@ public class MovieRepository(MoviesContext context) : IMovieRepository
         var query = context.Movies.AsQueryable();
 
         // Apply search filter
-        if (!string.IsNullOrWhiteSpace(searchTerm))
+        if (!string.IsNullOrWhiteSpace(titleSearchTerm))
         {
-            query = query.Where(m => m.Title.Contains(searchTerm));
+            query = query.Where(m => m.Title.Contains(titleSearchTerm));
         }
 
         // Apply genres filter

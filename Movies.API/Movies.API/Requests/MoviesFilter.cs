@@ -3,7 +3,7 @@ namespace Movies.API.Requests;
 public record MoviesFilter(
     int PageNumber = 1,
     int PageSize = 10,
-    string? SearchTerm = null,
+    string? TitleSearchTerm = null,
     IEnumerable<string>? Genres = null,
     string? Language = null,
     string? SortColumn = null,

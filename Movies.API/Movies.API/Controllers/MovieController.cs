@@ -16,8 +16,8 @@ public class MovieController(IMovieRepository movieRepository) : ControllerBase
         var pagedMovies = await movieRepository.GetMovies(
             filter.PageNumber,
             filter.PageSize,
-            filter.SearchTerm,
-            filter.Genre,
+            filter.TitleSearchTerm,
+            filter.Genres,
             filter.Language,
             filter.SortColumn,
             filter.SortDirection);
