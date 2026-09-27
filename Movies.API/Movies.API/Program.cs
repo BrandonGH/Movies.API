@@ -13,14 +13,26 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
+        const string angularOrigin = "http://localhost:4200";
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAngularDev", policy =>
+            {
+                policy.WithOrigins(angularOrigin)
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
+        });
+        
+        // Add services to the container.
         builder.Services.AddDbContext<MoviesContext>(options =>
             options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
         builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 
         builder.Services.AddControllers();
+        
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
 
@@ -33,12 +45,12 @@ public class Program
         {
             app.MapOpenApi();
             app.MapScalarApiReference();
+            app.UseCors("AllowAngularDev");
         }
 
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
-
 
         app.MapControllers();
 

@@ -169,15 +169,15 @@ public class MovieRepositoryTests : IDisposable
     }
 
     [Fact]
-    public async Task GetMovies_WithMultipleGenres_ReturnsMoviesMatchingAnyGenre()
+    public async Task GetMovies_WithMultipleGenres_ReturnsMoviesMatchingAllGenres()
     {
         // Act
-        var result = await _repository.GetMovies(1, 10, null, ["Romance", "Animation"], null, null, null);
+        var result = await _repository.GetMovies(1, 10, null, ["Action", "Crime"], null, null, null);
 
         // Assert
-        Assert.Equal(2, result.TotalCount); // Amélie (Romance), Spirited Away (Animation)
+        Assert.Equal(1, result.TotalCount); // The Dark Knight
         Assert.All(result.Items, movie =>
-            Assert.True(movie.Genre.Contains("Romance") || movie.Genre.Contains("Animation")));
+            Assert.True(movie.Genre.Contains("Action") && movie.Genre.Contains("Crime")));
     }
 
     [Fact]

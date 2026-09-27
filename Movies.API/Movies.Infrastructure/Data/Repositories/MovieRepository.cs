@@ -29,7 +29,7 @@ public class MovieRepository(MoviesContext context) : IMovieRepository
         var genreList = genres?.ToList();
         if (genreList != null && genreList.Count != 0)
         {
-            query = query.Where(m => m.Genre.Intersect(genreList).Any());   
+            query = query.Where(m => genreList.All(g => m.Genre.Contains(g)));
         }
 
         // Apply language filter
